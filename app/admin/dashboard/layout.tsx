@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { signOut } from 'next-auth/react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
@@ -18,7 +18,6 @@ const navItems = [
 
 function Sidebar({ collapsed, onToggle }: { collapsed: boolean; onToggle: () => void }) {
   const pathname = usePathname()
-  const router = useRouter()
 
   return (
     <motion.div
@@ -30,12 +29,12 @@ function Sidebar({ collapsed, onToggle }: { collapsed: boolean; onToggle: () => 
       {/* Logo */}
       <div className={`flex items-center gap-3 p-5 border-b border-white/5 ${collapsed ? 'justify-center' : ''}`}>
         <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#FF8C42] to-[#E65100] flex items-center justify-center shrink-0 shadow-lg">
-          <span className="font-display text-white font-bold text-base">A</span>
+          <span className="font-display text-white font-bold text-base">C</span>
         </div>
         {!collapsed && (
           <div className="overflow-hidden">
-            <p className="text-white font-display font-semibold text-sm leading-none">Ariana Silva</p>
-            <p className="text-white/30 text-xs mt-0.5">Art Studio Admin</p>
+            <p className="text-white font-display font-semibold text-sm leading-none">Colorpalette Studio</p>
+            <p className="text-white/30 text-xs mt-0.5">Studio Admin</p>
           </div>
         )}
       </div>

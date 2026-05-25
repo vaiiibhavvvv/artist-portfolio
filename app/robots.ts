@@ -1,5 +1,8 @@
 import { MetadataRoute } from 'next'
 
+// TODO: replace baseUrl with the production domain before deploying.
+const BASE_URL = 'https://colorpalette-studio.com'
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
@@ -7,6 +10,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: '/admin/',
     },
-    sitemap: 'https://arianasilva.art/sitemap.xml',
+    sitemap: `${BASE_URL}/sitemap.xml`,
   }
 }

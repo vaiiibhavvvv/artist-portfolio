@@ -3,7 +3,7 @@ import AboutPageClient from './AboutPageClient'
 
 export const metadata: Metadata = {
   title: 'About',
-  description: 'Learn about Ariana Silva — her journey, philosophy, and artistic vision.',
+  description: 'Learn about Colorpalette Studio — our journey, our craft, and the way we work in Saket, New Delhi.',
 }
 
 export default function AboutPage() {

@@ -5,9 +5,9 @@ import Link from 'next/link'
 import { ArrowRight, ChevronDown } from 'lucide-react'
 
 const floatingCards = [
-  { label: '15+ Years', sub: 'Experience', delay: 0.8, pos: 'top-1/4 left-6 md:left-16' },
-  { label: '200+', sub: 'Artworks', delay: 1.0, pos: 'top-1/3 right-6 md:right-16' },
-  { label: '50+', sub: 'Exhibitions', delay: 1.2, pos: 'bottom-1/3 left-6 md:left-24' },
+  { label: 'Delhi', sub: 'Studio', delay: 0.8, pos: 'top-1/4 left-6 md:left-16' },
+  { label: 'Custom', sub: 'Commissions', delay: 1.0, pos: 'top-1/3 right-6 md:right-16' },
+  { label: 'Original', sub: 'Artwork', delay: 1.2, pos: 'bottom-1/3 left-6 md:left-24' },
 ]
 
 export default function HeroSection() {
@@ -61,7 +61,7 @@ export default function HeroSection() {
           className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full border border-[#FF8C42]/40 bg-[#FF8C42]/10 text-[#FF8C42] text-xs tracking-widest uppercase"
         >
           <span className="w-1.5 h-1.5 rounded-full bg-[#FF8C42] animate-pulse" />
-          Fine Art Portfolio
+          Colorpalette Studio
         </motion.div>
 
         {/* Main heading */}
@@ -71,7 +71,7 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
           className="font-display text-5xl sm:text-7xl lg:text-8xl font-bold text-white leading-none mb-4"
         >
-          Bringing Art
+          Coloring the
           <br />
           <span
             className="italic"
@@ -82,7 +82,7 @@ export default function HeroSection() {
               backgroundClip: 'text',
             }}
           >
-            to Life
+            unsayable
           </span>
         </motion.h1>
 
@@ -93,8 +93,8 @@ export default function HeroSection() {
           transition={{ duration: 0.7, delay: 0.5 }}
           className="font-elegant text-white/70 text-lg sm:text-xl md:text-2xl max-w-2xl mx-auto mb-10 leading-relaxed italic"
         >
-          Award-winning artist transforming emotion into timeless masterpieces —
-          oil, watercolor, and mixed media that speak to the soul.
+          A Delhi-based art studio where every shade tells a story —
+          original paintings, custom commissions, and color for the spaces words can&apos;t reach.
         </motion.p>
 
         {/* CTA Buttons */}

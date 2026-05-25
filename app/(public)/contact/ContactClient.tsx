@@ -5,13 +5,20 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { MapPin, Phone, Mail, MessageCircle, CheckCircle, Send } from 'lucide-react'
+import { MapPin, Phone, Mail, MessageCircle, CheckCircle, Send, Instagram, Facebook } from 'lucide-react'
 import Reveal from '@/components/ui/Reveal'
+import { STUDIO, TEL_URL, WHATSAPP_URL } from '@/lib/utils'
 
 const schema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
   email: z.string().email('Please enter a valid email address'),
-  phone: z.string().optional(),
+  phone: z
+    .string()
+    .optional()
+    .refine(
+      (val) => !val || /^[+\d][\d\s\-()]{7,18}$/.test(val.trim()),
+      'Please enter a valid phone number',
+    ),
   message: z.string().min(10, 'Message must be at least 10 characters'),
 })
 
@@ -21,27 +28,32 @@ const contactDetails = [
   {
     icon: MapPin,
     label: 'Studio Address',
-    value: '123 Art District, Studio Lane\nNew York, NY 10001',
+    value: STUDIO.addressFull,
     href: null,
   },
   {
     icon: Phone,
     label: 'Phone',
-    value: '+1 (123) 456-7890',
-    href: 'tel:+11234567890',
+    value: STUDIO.phone,
+    href: TEL_URL,
   },
   {
     icon: Mail,
     label: 'Email',
-    value: 'hello@arianasilva.art',
-    href: 'mailto:hello@arianasilva.art',
+    value: STUDIO.email,
+    href: `mailto:${STUDIO.email}`,
   },
   {
     icon: MessageCircle,
     label: 'WhatsApp',
-    value: '+1 (123) 456-7890',
-    href: 'https://wa.me/1234567890',
+    value: STUDIO.phone,
+    href: WHATSAPP_URL,
   },
+]
+
+const socialDetails = [
+  { icon: Instagram, label: 'Instagram', href: STUDIO.instagram },
+  { icon: Facebook, label: 'Facebook', href: STUDIO.facebook },
 ]
 
 function FormField({
@@ -49,7 +61,7 @@ function FormField({
 }: { label: string; error?: string; children: React.ReactNode }) {
   return (
     <div>
-      <label className="block text-sm font-medium text-[#4E342E] mb-1.5 tracking-wide">{label}</label>
+      <label className="block text-sm font-medium text-[var(--text-strong)] mb-1.5 tracking-wide">{label}</label>
       {children}
       {error && (
         <motion.p
@@ -67,6 +79,7 @@ function FormField({
 export default function ContactClient() {
   const [submitted, setSubmitted] = useState(false)
   const [submitting, setSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm<FormData>({
     resolver: zodResolver(schema),
@@ -74,6 +87,7 @@ export default function ContactClient() {
 
   const onSubmit = async (data: FormData) => {
     setSubmitting(true)
+    setSubmitError(null)
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
@@ -83,15 +97,20 @@ export default function ContactClient() {
       if (res.ok) {
         setSubmitted(true)
         reset()
+      } else {
+        const body = await res.json().catch(() => ({}))
+        setSubmitError(body.error || 'Could not send message. Please try again.')
       }
     } catch (err) {
       console.error(err)
+      setSubmitError('Network error. Please try again.')
     } finally {
       setSubmitting(false)
     }
   }
 
-  const inputClass = 'w-full px-4 py-3 rounded-xl border border-[#4E342E]/15 bg-[#f8f5f0] text-[#4E342E] placeholder-[#6D4C41]/40 focus:outline-none focus:border-[#FF8C42] focus:ring-1 focus:ring-[#FF8C42]/20 transition-all duration-300 text-sm'
+  const inputClass =
+    'w-full px-4 py-3 rounded-xl border border-[var(--border-subtle)] bg-[var(--surface-muted)] text-[var(--text-strong)] placeholder:text-[var(--text-faint)] focus:outline-none focus:border-[#FF8C42] focus:ring-1 focus:ring-[#FF8C42]/20 transition-all duration-300 text-sm'
 
   return (
     <div className="pt-20">
@@ -123,13 +142,13 @@ export default function ContactClient() {
       </section>
 
       {/* Content */}
-      <section className="py-20 px-6 md:px-12 bg-[#f8f5f0]">
+      <section className="py-20 px-6 md:px-12 bg-[var(--surface-page)]">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Form */}
           <Reveal>
-            <div className="bg-white rounded-3xl p-8 md:p-10 shadow-sm border border-[#4E342E]/5">
-              <h2 className="font-display text-3xl font-bold text-[#4E342E] mb-2">Send a Message</h2>
-              <p className="text-[#6D4C41]/60 text-sm mb-8">I typically respond within 24 hours</p>
+            <div className="bg-[var(--surface-card)] rounded-3xl p-8 md:p-10 shadow-sm border border-[var(--border-subtle)]">
+              <h2 className="font-display text-3xl font-bold text-[var(--text-strong)] mb-2">Send a Message</h2>
+              <p className="text-[var(--text-muted)] text-sm mb-8">We typically respond within 24 hours</p>
 
               <AnimatePresence mode="wait">
                 {submitted ? (
@@ -147,11 +166,11 @@ export default function ContactClient() {
                     >
                       <CheckCircle size={36} className="text-white" />
                     </motion.div>
-                    <h3 className="font-display text-2xl font-bold text-[#4E342E] mb-2">Message Sent!</h3>
-                    <p className="text-[#6D4C41]/70 mb-6">Thank you for reaching out. I&apos;ll get back to you shortly.</p>
+                    <h3 className="font-display text-2xl font-bold text-[var(--text-strong)] mb-2">Message Sent!</h3>
+                    <p className="text-[var(--text-base)] mb-6">Thank you for reaching out. We&apos;ll get back to you shortly.</p>
                     <button
                       onClick={() => setSubmitted(false)}
-                      className="px-6 py-2.5 rounded-full border border-[#4E342E]/20 text-[#4E342E] text-sm hover:bg-[#f8f5f0] transition-colors"
+                      className="px-6 py-2.5 rounded-full border border-[var(--border-subtle)] text-[var(--text-strong)] text-sm hover:bg-[var(--surface-muted)] transition-colors"
                     >
                       Send Another Message
                     </button>
@@ -164,11 +183,17 @@ export default function ContactClient() {
                     onSubmit={handleSubmit(onSubmit)}
                     className="space-y-5"
                   >
+                    {submitError && (
+                      <div className="rounded-xl border border-red-500/30 bg-red-500/10 text-red-500 text-sm px-4 py-3">
+                        {submitError}
+                      </div>
+                    )}
+
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                       <FormField label="Your Name *" error={errors.name?.message}>
                         <input
                           {...register('name')}
-                          placeholder="Ariana Silva"
+                          placeholder="Your full name"
                           className={inputClass}
                         />
                       </FormField>
@@ -186,7 +211,7 @@ export default function ContactClient() {
                       <input
                         {...register('phone')}
                         type="tel"
-                        placeholder="+1 (555) 000-0000"
+                        placeholder="+91 9XXXX XXXXX"
                         className={inputClass}
                       />
                     </FormField>
@@ -195,7 +220,7 @@ export default function ContactClient() {
                       <textarea
                         {...register('message')}
                         rows={5}
-                        placeholder="Tell me about your project, commission idea, or question..."
+                        placeholder="Tell us about your commission, the space it's for, or the feeling you're trying to capture..."
                         className={`${inputClass} resize-none`}
                       />
                     </FormField>
@@ -233,8 +258,8 @@ export default function ContactClient() {
           <div className="space-y-6">
             {/* Contact details */}
             <Reveal delay={0.1}>
-              <div className="bg-white rounded-3xl p-8 shadow-sm border border-[#4E342E]/5">
-                <h3 className="font-display text-xl font-bold text-[#4E342E] mb-6">Contact Details</h3>
+              <div className="bg-[var(--surface-card)] rounded-3xl p-8 shadow-sm border border-[var(--border-subtle)]">
+                <h3 className="font-display text-xl font-bold text-[var(--text-strong)] mb-6">Contact Details</h3>
                 <div className="space-y-5">
                   {contactDetails.map(({ icon: Icon, label, value, href }) => (
                     <div key={label} className="flex items-start gap-4">
@@ -242,13 +267,18 @@ export default function ContactClient() {
                         <Icon size={18} className="text-[#FF8C42]" />
                       </div>
                       <div>
-                        <p className="text-xs text-[#6D4C41]/50 uppercase tracking-widest mb-0.5">{label}</p>
+                        <p className="text-xs text-[var(--text-muted)] uppercase tracking-widest mb-0.5">{label}</p>
                         {href ? (
-                          <a href={href} target={href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer" className="text-[#4E342E] text-sm hover:text-[#FF8C42] transition-colors whitespace-pre-line">
+                          <a
+                            href={href}
+                            target={href.startsWith('http') ? '_blank' : undefined}
+                            rel="noopener noreferrer"
+                            className="text-[var(--text-strong)] text-sm hover:text-[#FF8C42] transition-colors break-all"
+                          >
                             {value}
                           </a>
                         ) : (
-                          <p className="text-[#4E342E] text-sm whitespace-pre-line">{value}</p>
+                          <p className="text-[var(--text-strong)] text-sm whitespace-pre-line">{value}</p>
                         )}
                       </div>
                     </div>
@@ -259,9 +289,10 @@ export default function ContactClient() {
 
             {/* Map */}
             <Reveal delay={0.2}>
-              <div className="rounded-3xl overflow-hidden h-72 shadow-sm border border-[#4E342E]/5">
+              <div className="rounded-3xl overflow-hidden h-72 shadow-sm border border-[var(--border-subtle)]">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.15830869428!2d-74.11976397304605!3d40.697403441436724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1647881629842!5m2!1sen!2sus"
+                  title="Colorpalette Studio — Saket, New Delhi"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3505.4884373816517!2d77.20772231507967!3d28.524846982465687!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce1f9c1a04e83%3A0x6c0e7f5b58a7b4b8!2sSaket%2C%20New%20Delhi%2C%20Delhi!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
@@ -275,16 +306,19 @@ export default function ContactClient() {
             {/* Social */}
             <Reveal delay={0.3}>
               <div className="bg-gradient-to-br from-[#4E342E] to-[#3E2723] rounded-3xl p-8">
-                <h3 className="font-display text-white text-xl font-bold mb-2">Follow the Journey</h3>
-                <p className="text-white/60 text-sm mb-5">See works-in-progress, exhibitions, and studio life</p>
+                <h3 className="font-display text-white text-xl font-bold mb-2">Follow the Studio</h3>
+                <p className="text-white/60 text-sm mb-5">Works in progress, new pieces, and a peek inside the studio</p>
                 <div className="flex gap-3">
-                  {['Instagram', 'Facebook', 'YouTube'].map((s) => (
+                  {socialDetails.map(({ icon: Icon, label, href }) => (
                     <a
-                      key={s}
-                      href="#"
-                      className="flex-1 py-2 text-center text-xs text-white/70 hover:text-[#FF8C42] border border-white/15 hover:border-[#FF8C42]/50 rounded-xl transition-all duration-300"
+                      key={label}
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 flex items-center justify-center gap-2 py-3 text-xs text-white/70 hover:text-[#FF8C42] border border-white/15 hover:border-[#FF8C42]/50 rounded-xl transition-all duration-300"
                     >
-                      {s}
+                      <Icon size={14} />
+                      {label}
                     </a>
                   ))}
                 </div>

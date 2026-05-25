@@ -2,7 +2,8 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { MapPin, Phone, Mail, Share2, Globe, MessageCircle, PlayCircle } from 'lucide-react'
+import { MapPin, Phone, Mail, Instagram, Facebook } from 'lucide-react'
+import { STUDIO, TEL_URL } from '@/lib/utils'
 
 const quickLinks = [
   { href: '/', label: 'Home' },
@@ -12,10 +13,8 @@ const quickLinks = [
 ]
 
 const socialLinks = [
-  { icon: Share2, href: '#', label: 'Instagram' },
-  { icon: Globe, href: '#', label: 'Facebook' },
-  { icon: MessageCircle, href: '#', label: 'Twitter' },
-  { icon: PlayCircle, href: '#', label: 'YouTube' },
+  { icon: Instagram, href: STUDIO.instagram, label: 'Instagram' },
+  { icon: Facebook, href: STUDIO.facebook, label: 'Facebook' },
 ]
 
 export default function Footer() {
@@ -23,10 +22,11 @@ export default function Footer() {
     <footer className="relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#3E2723] via-[#4E342E] to-[#3E2723]" />
-      <div className="absolute inset-0 opacity-10"
+      <div
+        className="absolute inset-0 opacity-10"
         style={{
           backgroundImage: `radial-gradient(circle at 20% 50%, #FF8C42 0%, transparent 50%),
-                            radial-gradient(circle at 80% 20%, #FF8C42 0%, transparent 40%)`
+                            radial-gradient(circle at 80% 20%, #FF8C42 0%, transparent 40%)`,
         }}
       />
 
@@ -36,18 +36,20 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#FF8C42] to-[#E65100] flex items-center justify-center">
-                <span className="text-white font-display font-bold text-lg">A</span>
+                <span className="text-white font-display font-bold text-lg">C</span>
               </div>
-              <span className="font-display text-2xl text-white font-semibold">Ariana Silva</span>
+              <span className="font-display text-2xl text-white font-semibold">{STUDIO.name}</span>
             </div>
             <p className="text-white/60 text-sm leading-relaxed mb-6 max-w-xs">
-              Capturing the beauty of the world through brush and canvas. Every painting tells a story; every stroke carries emotion.
+              {STUDIO.tagline}. A Delhi-based art studio crafting colors that tell stories — one canvas, one commission, one feeling at a time.
             </p>
             <div className="flex items-center gap-3">
               {socialLinks.map(({ icon: Icon, href, label }) => (
                 <motion.a
                   key={label}
                   href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={label}
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
@@ -83,15 +85,19 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-start gap-3 text-white/60 text-sm">
                 <MapPin size={16} className="text-[#FF8C42] shrink-0 mt-0.5" />
-                <span>123 Art District, Studio Lane<br />New York, NY 10001</span>
+                <span>{STUDIO.address}</span>
               </li>
               <li className="flex items-center gap-3 text-white/60 text-sm">
                 <Phone size={16} className="text-[#FF8C42] shrink-0" />
-                <a href="tel:+11234567890" className="hover:text-[#FF8C42] transition-colors">+1 (123) 456-7890</a>
+                <a href={TEL_URL} className="hover:text-[#FF8C42] transition-colors">
+                  {STUDIO.phone}
+                </a>
               </li>
               <li className="flex items-center gap-3 text-white/60 text-sm">
                 <Mail size={16} className="text-[#FF8C42] shrink-0" />
-                <a href="mailto:hello@arianasilva.art" className="hover:text-[#FF8C42] transition-colors">hello@arianasilva.art</a>
+                <a href={`mailto:${STUDIO.email}`} className="hover:text-[#FF8C42] transition-colors break-all">
+                  {STUDIO.email}
+                </a>
               </li>
             </ul>
           </div>
@@ -100,11 +106,9 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
           <p className="text-white/40 text-xs">
-            © {new Date().getFullYear()} Ariana Silva. All rights reserved.
+            © {new Date().getFullYear()} {STUDIO.name}. All rights reserved.
           </p>
-          <p className="text-white/30 text-xs font-elegant italic">
-            Crafted with passion & pixels
-          </p>
+          <p className="text-white/30 text-xs font-elegant italic">Crafted with passion & pixels</p>
         </div>
       </div>
     </footer>

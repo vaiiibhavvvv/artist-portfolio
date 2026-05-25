@@ -4,11 +4,11 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import { X, ZoomIn, Calendar, Tag } from 'lucide-react'
-import Reveal from '@/components/ui/Reveal'
 import { ArtworkSkeleton } from '@/components/ui/Skeleton'
+import { STUDIO } from '@/lib/utils'
 import type { Artwork } from '@/types'
 
-const CATEGORIES = ['All', 'Oil Painting', 'Watercolor', 'Acrylic', 'Digital Art', 'Mixed Media', 'Sketch']
+const CATEGORIES = ['All', 'Oil Painting', 'Watercolor', 'Acrylic', 'Digital Art', 'Mixed Media', 'Sculpture', 'Photography', 'Sketch']
 
 // Demo artworks for display (replaced by real data via API)
 const DEMO_ARTWORKS: Artwork[] = [
@@ -91,7 +91,7 @@ function ArtworkModal({ artwork, onClose }: { artwork: Artwork; onClose: () => v
 
           <div className="mt-8 pt-6 border-t border-[#4E342E]/8">
             <a
-              href={`https://wa.me/1234567890?text=${encodeURIComponent(`Hello, I'm interested in the artwork "${artwork.title}". Could you provide more details?`)}`}
+              href={`https://wa.me/${STUDIO.phoneRaw}?text=${encodeURIComponent(`Hello Colorpalette Studio, I'm interested in the artwork "${artwork.title}". Could you share more details?`)}`}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full flex items-center justify-center gap-2 py-3 rounded-full bg-gradient-to-r from-[#4E342E] to-[#FF8C42] text-white text-sm font-medium hover:scale-105 hover:shadow-lg transition-all duration-300"
@@ -216,7 +216,7 @@ export default function GalleryClient() {
       </section>
 
       {/* Filters */}
-      <section className="sticky top-20 z-30 bg-white/90 backdrop-blur-xl border-b border-[#4E342E]/8 py-4 px-6">
+      <section className="sticky top-20 z-30 bg-[var(--surface-card)]/90 backdrop-blur-xl border-b border-[var(--border-subtle)] py-4 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-3 overflow-x-auto pb-1 scrollbar-hide">
             {CATEGORIES.map((cat) => (
@@ -226,7 +226,7 @@ export default function GalleryClient() {
                 className={`flex-shrink-0 px-5 py-2 rounded-full text-sm font-medium tracking-wide transition-all duration-300 ${
                   activeCategory === cat
                     ? 'bg-gradient-to-r from-[#4E342E] to-[#FF8C42] text-white shadow-md'
-                    : 'bg-[#f8f5f0] text-[#4E342E] hover:bg-[#ede8e0]'
+                    : 'bg-[var(--surface-muted)] text-[var(--text-strong)] hover:opacity-80'
                 }`}
               >
                 {cat}
@@ -237,7 +237,7 @@ export default function GalleryClient() {
       </section>
 
       {/* Gallery grid */}
-      <section className="py-16 px-6 md:px-12 bg-[#f8f5f0]">
+      <section className="py-16 px-6 md:px-12 bg-[var(--surface-page)]">
         <div className="max-w-7xl mx-auto">
           {loading ? (
             <div className="columns-1 sm:columns-2 lg:columns-3 gap-6">
@@ -254,7 +254,7 @@ export default function GalleryClient() {
                   initial={{ opacity: 0 }} animate={{ opacity: 1 }}
                   className="text-center py-24"
                 >
-                  <p className="font-display text-2xl text-[#4E342E]/40">No artworks in this category yet</p>
+                  <p className="font-display text-2xl text-[var(--text-muted)]">No artworks in this category yet</p>
                 </motion.div>
               ) : (
                 <motion.div layout className="columns-1 sm:columns-2 lg:columns-3 gap-6">

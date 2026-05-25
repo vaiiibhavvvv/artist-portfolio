@@ -3,14 +3,27 @@ import './globals.css'
 import { Providers } from '@/components/Providers'
 
 export const metadata: Metadata = {
-  title: { default: 'Ariana Silva | Fine Art Portfolio', template: '%s | Ariana Silva Art' },
-  description: 'Explore the exquisite artwork of Ariana Silva — an award-winning fine artist specializing in oil paintings, watercolors, and mixed media.',
-  keywords: ['artist', 'fine art', 'oil painting', 'watercolor', 'portfolio', 'gallery'],
+  title: {
+    default: 'Colorpalette Studio | Art that colors the unsayable',
+    template: '%s | Colorpalette Studio',
+  },
+  description:
+    "Colorpalette Studio is a Delhi-based art studio where every shade tells a story. Coloring the spaces words can't reach — paintings, commissions, and custom artwork from Saket, New Delhi.",
+  keywords: [
+    'Colorpalette Studio',
+    'art studio Delhi',
+    'Saket art studio',
+    'paintings Delhi',
+    'commissioned art',
+    'fine art India',
+    'oil painting',
+    'watercolor',
+  ],
   openGraph: {
     type: 'website',
-    siteName: 'Ariana Silva Art',
-    title: 'Ariana Silva | Fine Art Portfolio',
-    description: 'Explore the exquisite artwork of Ariana Silva.',
+    siteName: 'Colorpalette Studio',
+    title: 'Colorpalette Studio | Art that colors the unsayable',
+    description: "Coloring the spaces words can't reach. A Delhi-based art studio.",
   },
   robots: { index: true, follow: true },
 }
@@ -18,11 +31,6 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
-      </head>
       <body>
         <Providers>{children}</Providers>
       </body>

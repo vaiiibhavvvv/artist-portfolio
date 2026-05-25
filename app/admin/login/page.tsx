@@ -56,10 +56,10 @@ export default function AdminLoginPage() {
             <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#FF8C42] to-[#E65100] flex items-center justify-center mx-auto mb-4 shadow-lg"
               style={{ boxShadow: '0 0 30px rgba(255,140,66,0.3)' }}
             >
-              <span className="font-display text-3xl text-white font-bold">A</span>
+              <span className="font-display text-3xl text-white font-bold">C</span>
             </div>
             <h1 className="font-display text-3xl font-bold text-white mb-1">Admin Portal</h1>
-            <p className="text-white/40 text-sm">Ariana Silva Art Studio</p>
+            <p className="text-white/40 text-sm">Colorpalette Studio</p>
           </div>
 
           {/* Error */}
@@ -83,7 +83,7 @@ export default function AdminLoginPage() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="admin@arianasilva.art"
+                  placeholder="studiocolorpalette@gmail.com"
                   required
                   className="w-full pl-11 pr-4 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/25 focus:outline-none focus:border-[#FF8C42]/60 focus:bg-white/8 transition-all duration-300 text-sm"
                 />

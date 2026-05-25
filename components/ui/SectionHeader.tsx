@@ -27,16 +27,17 @@ export default function SectionHeader({
       <Reveal delay={0.1}>
         <h2
           className={`font-display text-4xl md:text-5xl font-bold leading-tight mb-4 ${
-            light ? 'text-white' : 'text-[#4E342E]'
+            light ? 'text-white' : 'text-[var(--text-strong)]'
           }`}
-          dangerouslySetInnerHTML={{ __html: title }}
-        />
+        >
+          {title}
+        </h2>
       </Reveal>
       {subtitle && (
         <Reveal delay={0.2}>
           <p
             className={`font-elegant text-lg italic max-w-2xl ${centered ? 'mx-auto' : ''} ${
-              light ? 'text-white/60' : 'text-[#6D4C41]/70'
+              light ? 'text-white/60' : 'text-[var(--text-muted)]'
             }`}
           >
             {subtitle}

@@ -52,7 +52,7 @@ const featuredWorks = [
 
 export default function FeaturedWorks() {
   return (
-    <section className="py-24 px-6 md:px-12 bg-[#f8f5f0]">
+    <section className="py-24 px-6 md:px-12 bg-[var(--surface-page)]">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
@@ -60,13 +60,13 @@ export default function FeaturedWorks() {
             <p className="text-[#FF8C42] text-xs tracking-widest uppercase mb-3 font-medium">Portfolio</p>
           </Reveal>
           <Reveal delay={0.1}>
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-[#4E342E] mb-4">
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-[var(--text-strong)] mb-4">
               Featured Works
             </h2>
           </Reveal>
           <Reveal delay={0.2}>
-            <p className="font-elegant text-[#6D4C41]/70 text-lg italic max-w-xl mx-auto">
-              A curated selection of pieces that define the artistic journey
+            <p className="font-elegant text-[var(--text-muted)] text-lg italic max-w-xl mx-auto">
+              A handful of pieces that show what we love to make
             </p>
           </Reveal>
         </div>
@@ -78,7 +78,7 @@ export default function FeaturedWorks() {
               <motion.div
                 whileHover={{ y: -6 }}
                 transition={{ duration: 0.3 }}
-                className="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-shadow duration-500 bg-white cursor-pointer"
+                className="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-shadow duration-500 bg-[var(--surface-card)] cursor-pointer"
               >
                 <div className={`relative ${work.height} overflow-hidden`}>
                   <Image
@@ -107,7 +107,7 @@ export default function FeaturedWorks() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97 }}
-              className="inline-flex items-center gap-2 px-10 py-4 rounded-full border-2 border-[#4E342E] text-[#4E342E] font-medium tracking-wide hover:bg-[#4E342E] hover:text-white transition-all duration-300"
+              className="inline-flex items-center gap-2 px-10 py-4 rounded-full border-2 border-[var(--text-strong)] text-[var(--text-strong)] font-medium tracking-wide hover:bg-[var(--text-strong)] hover:text-[var(--surface-card)] transition-all duration-300"
             >
               View Full Gallery
             </motion.button>

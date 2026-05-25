@@ -25,8 +25,20 @@ export const ARTWORK_CATEGORIES = [
   'Sketch',
 ]
 
-export const WHATSAPP_NUMBER = process.env.WHATSAPP_NUMBER || '1234567890'
-export const WHATSAPP_MESSAGE = encodeURIComponent(
-  'Hello, I visited your portfolio website and I would like to know more about your artwork.'
-)
-export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`
+export const STUDIO = {
+  name: 'Colorpalette Studio',
+  shortName: 'Colorpalette',
+  tagline: "Coloring the spaces words can't reach",
+  phone: '+91 87963 01764',
+  phoneRaw: '918796301764',
+  email: 'studiocolorpalette@gmail.com',
+  address: 'Saket, New Delhi',
+  addressFull: 'Saket, New Delhi 110017',
+  instagram: 'https://www.instagram.com/colorpalette_stud',
+  facebook: 'https://www.facebook.com/share/1CPfqJzNG6/',
+  whatsappMessage:
+    'Hello Colorpalette Studio — I visited your website and would love to know more about your work.',
+} as const
+
+export const WHATSAPP_URL = `https://wa.me/${STUDIO.phoneRaw}?text=${encodeURIComponent(STUDIO.whatsappMessage)}`
+export const TEL_URL = `tel:+${STUDIO.phoneRaw}`

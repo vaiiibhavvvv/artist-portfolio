@@ -5,38 +5,39 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Star, ChevronLeft, ChevronRight } from 'lucide-react'
 import Reveal from '@/components/ui/Reveal'
 
+// NOTE: Template testimonials — replace with real client quotes once the studio collects them.
 const testimonials = [
   {
     id: 1,
-    name: 'Isabella Fontaine',
-    role: 'Art Collector, Paris',
-    text: 'Ariana\'s work transformed my living room into a gallery. The depth and emotion in her oil paintings is truly extraordinary — each piece has its own soul.',
+    name: 'Anjali Mehta',
+    role: 'Collector, Mumbai',
+    text: 'The piece they made for our living room feels like it has always belonged there. The way Colorpalette Studio listens before they paint is what makes the difference.',
     rating: 5,
-    avatar: 'IF',
+    avatar: 'AM',
   },
   {
     id: 2,
-    name: 'Marcus Webb',
-    role: 'Interior Designer, New York',
-    text: 'I\'ve collaborated with many artists, but Ariana\'s ability to understand a client\'s vision and translate it into breathtaking art is unparalleled.',
+    name: 'Rohan Khanna',
+    role: 'Interior Designer, Delhi',
+    text: 'I have worked with many studios, but the level of care and craft here is rare. Every commission lands exactly where my clients hoped it would.',
     rating: 5,
-    avatar: 'MW',
+    avatar: 'RK',
   },
   {
     id: 3,
-    name: 'Sofia Nakamura',
-    role: 'Gallery Director, Tokyo',
-    text: 'We featured Ariana\'s collection last spring and the response was overwhelming. Her work speaks across cultural boundaries with a universal language of beauty.',
+    name: 'Priya Iyer',
+    role: 'Curator, Bengaluru',
+    text: 'There is an honesty to their work that comes from a real love of the medium. Colorpalette Studio paintings feel hand-made in the best possible sense.',
     rating: 5,
-    avatar: 'SN',
+    avatar: 'PI',
   },
   {
     id: 4,
-    name: 'David Laurent',
-    role: 'Private Collector, London',
-    text: 'Commissioned a portrait for my family\'s estate. Ariana delivered a masterpiece that will be treasured for generations. Truly exceptional talent.',
+    name: 'Sameer Bhatia',
+    role: 'Private Collector, Saket',
+    text: 'They painted a piece for my parents on their anniversary. Watching them open it was a moment I will keep with me. Thank you for taking it so seriously.',
     rating: 5,
-    avatar: 'DL',
+    avatar: 'SB',
   },
 ]
 
@@ -54,7 +55,7 @@ export default function Testimonials() {
   const next = () => setCurrent((c) => (c + 1) % testimonials.length)
 
   return (
-    <section className="py-24 px-6 md:px-12 bg-[#f8f5f0] relative overflow-hidden">
+    <section className="py-24 px-6 md:px-12 bg-[var(--surface-page)] relative overflow-hidden">
       {/* Decorative */}
       <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-[#FF8C42]/5 blur-3xl" />
       <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-[#4E342E]/5 blur-3xl" />
@@ -65,7 +66,7 @@ export default function Testimonials() {
             <p className="text-[#FF8C42] text-xs tracking-widest uppercase mb-3 font-medium">Testimonials</p>
           </Reveal>
           <Reveal delay={0.1}>
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-[#4E342E]">
+            <h2 className="font-display text-4xl md:text-5xl font-bold text-[var(--text-strong)]">
               What Collectors Say
             </h2>
           </Reveal>
@@ -80,7 +81,7 @@ export default function Testimonials() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -60 }}
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              className="bg-white rounded-3xl p-10 md:p-14 shadow-md border border-[#4E342E]/5 text-center"
+              className="bg-[var(--surface-card)] rounded-3xl p-10 md:p-14 shadow-md border border-[var(--border-subtle)] text-center"
             >
               {/* Stars */}
               <div className="flex justify-center gap-1 mb-6">
@@ -92,7 +93,7 @@ export default function Testimonials() {
               {/* Quote mark */}
               <div className="font-display text-8xl text-[#FF8C42]/20 leading-none -mt-4 mb-2 select-none">&ldquo;</div>
 
-              <p className="font-elegant text-[#4E342E] text-xl md:text-2xl leading-relaxed italic mb-8 -mt-6">
+              <p className="font-elegant text-[var(--text-strong)] text-xl md:text-2xl leading-relaxed italic mb-8 -mt-6">
                 {testimonials[current].text}
               </p>
 
@@ -102,8 +103,8 @@ export default function Testimonials() {
                   {testimonials[current].avatar}
                 </div>
                 <div className="text-left">
-                  <p className="font-display font-semibold text-[#4E342E]">{testimonials[current].name}</p>
-                  <p className="text-[#6D4C41]/60 text-sm">{testimonials[current].role}</p>
+                  <p className="font-display font-semibold text-[var(--text-strong)]">{testimonials[current].name}</p>
+                  <p className="text-[var(--text-muted)] text-sm">{testimonials[current].role}</p>
                 </div>
               </div>
             </motion.div>
@@ -113,7 +114,7 @@ export default function Testimonials() {
           <div className="flex items-center justify-center gap-4 mt-8">
             <button
               onClick={prev}
-              className="w-10 h-10 rounded-full border-2 border-[#4E342E]/20 flex items-center justify-center text-[#4E342E] hover:border-[#FF8C42] hover:text-[#FF8C42] transition-all"
+              className="w-10 h-10 rounded-full border-2 border-[var(--border-subtle)] flex items-center justify-center text-[var(--text-strong)] hover:border-[#FF8C42] hover:text-[#FF8C42] transition-all"
             >
               <ChevronLeft size={18} />
             </button>
@@ -124,7 +125,7 @@ export default function Testimonials() {
                   key={i}
                   onClick={() => setCurrent(i)}
                   className={`h-1.5 rounded-full transition-all duration-300 ${
-                    i === current ? 'w-8 bg-[#FF8C42]' : 'w-3 bg-[#4E342E]/20'
+                    i === current ? 'w-8 bg-[#FF8C42]' : 'w-3 bg-[var(--border-subtle)]'
                   }`}
                 />
               ))}
@@ -132,7 +133,7 @@ export default function Testimonials() {
 
             <button
               onClick={next}
-              className="w-10 h-10 rounded-full border-2 border-[#4E342E]/20 flex items-center justify-center text-[#4E342E] hover:border-[#FF8C42] hover:text-[#FF8C42] transition-all"
+              className="w-10 h-10 rounded-full border-2 border-[var(--border-subtle)] flex items-center justify-center text-[var(--text-strong)] hover:border-[#FF8C42] hover:text-[#FF8C42] transition-all"
             >
               <ChevronRight size={18} />
             </button>

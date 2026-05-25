@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, Phone, Calendar, User, MessageSquare } from 'lucide-react'
+import { Mail, Phone, Calendar, MessageSquare } from 'lucide-react'
 import type { ContactMessage } from '@/types'
 
 export default function MessagesPage() {
@@ -103,7 +103,7 @@ export default function MessagesPage() {
 
               <div className="flex gap-3 mt-6">
                 <a
-                  href={`mailto:${selected.email}?subject=Re: Your message to Ariana Silva Art`}
+                  href={`mailto:${selected.email}?subject=Re: Your message to Colorpalette Studio`}
                   className="flex items-center gap-2 px-6 py-3 rounded-xl text-white text-sm font-medium transition-all hover:scale-105"
                   style={{ background: 'linear-gradient(135deg, #FF8C42, #E65100)' }}
                 >

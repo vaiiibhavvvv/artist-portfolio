@@ -6,28 +6,27 @@ import { useRef } from 'react'
 import Reveal from '@/components/ui/Reveal'
 
 const timeline = [
-  { year: '2008', title: 'First Brushstroke', desc: 'Began formal training at the New York Academy of Fine Arts, studying under master painters.' },
-  { year: '2011', title: 'First Solo Exhibition', desc: 'Debuted at the Chelsea Gallery with "Embers" — sold out within the opening week.' },
-  { year: '2014', title: 'International Recognition', desc: 'Invited to exhibit at the Paris Biennale; featured in Art Today magazine.' },
-  { year: '2017', title: 'Studio Founding', desc: 'Established the Silver Studio in downtown New York, opening a school for young artists.' },
-  { year: '2020', title: 'Digital Expansion', desc: 'Launched online classes during the pandemic, reaching 10,000+ students worldwide.' },
-  { year: '2024', title: 'Present', desc: 'Continuing to push creative boundaries with new mixed media explorations and international commissions.' },
+  { year: 'Beginning', title: 'A First Brushstroke', desc: 'A small home studio in Delhi — built around the simple belief that color is a language of its own.' },
+  { year: 'Early Years', title: 'Finding the Voice', desc: 'Years of quiet practice in oils, watercolors, and mixed media, learning what each medium asks for and what it gives back.' },
+  { year: 'Commissions', title: 'Painting for People', desc: 'First commissioned works for homes across Delhi — every piece a conversation, not just a transaction.' },
+  { year: 'The Studio', title: 'Colorpalette Studio Opens', desc: 'A dedicated space in Saket where we now create original artwork and take on bespoke commissions for collectors.' },
+  { year: 'Today', title: 'Coloring the Unsayable', desc: 'Working closely with each client, building pieces meant to live in real rooms and quiet moments — not behind glass.' },
 ]
 
 const skills = [
-  { name: 'Oil Painting', level: 97 },
+  { name: 'Oil Painting', level: 95 },
   { name: 'Watercolor', level: 90 },
   { name: 'Acrylic', level: 85 },
-  { name: 'Mixed Media', level: 80 },
-  { name: 'Digital Art', level: 70 },
-  { name: 'Sculpture', level: 65 },
+  { name: 'Mixed Media', level: 82 },
+  { name: 'Portraiture', level: 78 },
+  { name: 'Custom Commissions', level: 96 },
 ]
 
 const achievements = [
-  { icon: '🏆', title: 'Gold Medal', desc: 'International Art Olympiad, Vienna 2019' },
-  { icon: '🎨', title: 'Best Contemporary Artist', desc: 'New York Art Awards 2021' },
-  { icon: '📚', title: 'Published Author', desc: '"The Language of Paint" — bestselling art guide' },
-  { icon: '🌍', title: 'UNESCO Fellow', desc: 'Art education ambassador 2022–present' },
+  { icon: '🎨', title: 'Featured Studio', desc: 'Profiled by local arts press for our commission practice' },
+  { icon: '🏡', title: 'Homes in 10+ Cities', desc: 'Original artwork placed across India and abroad' },
+  { icon: '🤝', title: 'Trusted by Collectors', desc: 'Repeat commissions and word-of-mouth from people we love working with' },
+  { icon: '🌿', title: 'Slow-Made', desc: 'Every piece hand-painted in our Saket studio — no prints, no shortcuts' },
 ]
 
 function SkillBar({ name, level }: { name: string; level: number }) {
@@ -37,10 +36,10 @@ function SkillBar({ name, level }: { name: string; level: number }) {
   return (
     <div ref={ref} className="mb-5">
       <div className="flex justify-between mb-1.5">
-        <span className="text-[#4E342E] font-medium text-sm">{name}</span>
+        <span className="text-[var(--text-strong)] font-medium text-sm">{name}</span>
         <span className="text-[#FF8C42] text-sm font-semibold">{level}%</span>
       </div>
-      <div className="h-1.5 bg-[#4E342E]/10 rounded-full overflow-hidden">
+      <div className="h-1.5 bg-[var(--border-subtle)] rounded-full overflow-hidden">
         <motion.div
           className="h-full rounded-full"
           style={{ background: 'linear-gradient(90deg, #4E342E, #FF8C42)' }}
@@ -66,25 +65,25 @@ export default function AboutPageClient() {
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
             className="text-[#FF8C42] text-xs tracking-widest uppercase mb-4"
           >
-            The Artist
+            The Studio
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
             className="font-display text-5xl md:text-7xl font-bold text-white mb-6"
           >
-            About <span className="font-elegant italic font-normal text-[#FFB07A]">Ariana</span>
+            About <span className="font-elegant italic font-normal text-[#FFB07A]">Colorpalette Studio</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
-            className="font-elegant text-white/60 text-xl italic max-w-2xl mx-auto"
+            className="font-elegant text-white/65 text-xl md:text-2xl italic max-w-2xl mx-auto"
           >
-            Art is not what you see, but what you make others see.
+            Coloring the spaces words can&apos;t reach.
           </motion.p>
         </div>
       </section>
 
       {/* Story + Portrait */}
-      <section className="py-24 px-6 md:px-12 bg-white">
+      <section className="py-24 px-6 md:px-12 bg-[var(--surface-card)]">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <Reveal direction="left">
             <div className="relative">
@@ -92,7 +91,7 @@ export default function AboutPageClient() {
               <div className="relative rounded-3xl overflow-hidden">
                 <Image
                   src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=700&q=80"
-                  alt="Ariana Silva in her studio"
+                  alt="Inside Colorpalette Studio"
                   width={600}
                   height={750}
                   className="object-cover w-full"
@@ -102,31 +101,32 @@ export default function AboutPageClient() {
           </Reveal>
 
           <div>
-            <Reveal><p className="text-[#FF8C42] text-xs tracking-widest uppercase mb-3">My Story</p></Reveal>
+            <Reveal><p className="text-[#FF8C42] text-xs tracking-widest uppercase mb-3">Our Story</p></Reveal>
             <Reveal delay={0.1}>
-              <h2 className="font-display text-4xl font-bold text-[#4E342E] mb-6 leading-snug">
-                Born with Paint
-                <br /><span className="font-elegant italic font-normal text-[#FF8C42]">in My Veins</span>
+              <h2 className="font-display text-4xl font-bold text-[var(--text-strong)] mb-6 leading-snug">
+                Color is how we
+                <br /><span className="font-elegant italic font-normal text-[#FF8C42]">say what matters</span>
               </h2>
             </Reveal>
             <Reveal delay={0.2}>
-              <p className="text-[#6D4C41]/80 leading-relaxed mb-4">
-                I grew up watching my grandmother paint in a sun-drenched corner of our home in Lisbon.
-                The smell of linseed oil, the quiet concentration in her eyes — that image never left me.
-                By age twelve, I had filled three sketchbooks and knew I would spend my life creating.
+              <p className="text-[var(--text-base)] leading-relaxed mb-4">
+                Colorpalette Studio is a small art practice in Saket, New Delhi. We started the way most
+                studios do — with a single room, a stack of canvases, and the stubborn belief that
+                hand-painted work still belongs in people&apos;s homes.
               </p>
             </Reveal>
             <Reveal delay={0.3}>
-              <p className="text-[#6D4C41]/70 leading-relaxed mb-4">
-                I trained at the New York Academy of Fine Arts and later apprenticed under the legendary
-                portraitist Elise Moreau in Paris. Those years forged not just technique, but a philosophy:
-                art should disturb the comfortable and comfort the disturbed.
+              <p className="text-[var(--text-muted)] leading-relaxed mb-4">
+                We work in oils, watercolors, and mixed media. Some of what we make is original;
+                a lot of it is commissioned — a piece for a new home, a portrait for a milestone,
+                an artwork built around a memory someone wants to keep close.
               </p>
             </Reveal>
             <Reveal delay={0.4}>
-              <p className="text-[#6D4C41]/70 leading-relaxed">
-                Today, I work from my Silver Studio in New York, accepting commissions worldwide and teaching
-                the next generation of artists that courage is the most important medium of all.
+              <p className="text-[var(--text-muted)] leading-relaxed">
+                Every painting that leaves this studio is hand-made here. No prints, no shortcuts,
+                no rushing a piece that isn&apos;t ready. If you have something you&apos;d like us to make
+                with you, we&apos;d love to hear about it.
               </p>
             </Reveal>
 
@@ -134,12 +134,12 @@ export default function AboutPageClient() {
             <div className="grid grid-cols-2 gap-4 mt-8">
               {['Mission', 'Vision'].map((item, i) => (
                 <Reveal key={item} delay={0.5 + i * 0.1}>
-                  <div className="p-5 rounded-2xl bg-[#f8f5f0] border border-[#4E342E]/8">
-                    <h4 className="font-display font-semibold text-[#4E342E] mb-2">{item}</h4>
-                    <p className="text-[#6D4C41]/70 text-sm leading-relaxed">
+                  <div className="p-5 rounded-2xl bg-[var(--surface-muted)] border border-[var(--border-subtle)]">
+                    <h4 className="font-display font-semibold text-[var(--text-strong)] mb-2">{item}</h4>
+                    <p className="text-[var(--text-muted)] text-sm leading-relaxed">
                       {item === 'Mission'
-                        ? 'To create art that moves people — that stops them mid-step and makes them feel something real.'
-                        : 'A world where beauty is not a luxury but a necessity, accessible to all who seek it.'}
+                        ? 'To make art that earns its place in the room it lives in — paintings that hold a feeling instead of just decorating a wall.'
+                        : 'A practice where every commission begins with listening, and every brushstroke means something we couldn’t have said any other way.'}
                     </p>
                   </div>
                 </Reveal>
@@ -150,11 +150,11 @@ export default function AboutPageClient() {
       </section>
 
       {/* Timeline */}
-      <section className="py-24 px-6 md:px-12 bg-[#f8f5f0]">
+      <section className="py-24 px-6 md:px-12 bg-[var(--surface-page)]">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
             <Reveal><p className="text-[#FF8C42] text-xs tracking-widest uppercase mb-3">Journey</p></Reveal>
-            <Reveal delay={0.1}><h2 className="font-display text-4xl font-bold text-[#4E342E]">Artistic Timeline</h2></Reveal>
+            <Reveal delay={0.1}><h2 className="font-display text-4xl font-bold text-[var(--text-strong)]">Our Journey</h2></Reveal>
           </div>
 
           <div className="relative">
@@ -171,12 +171,12 @@ export default function AboutPageClient() {
                     <div className="inline-block px-3 py-1 rounded-full bg-[#FF8C42]/10 text-[#FF8C42] text-xs font-semibold mb-2 tracking-widest">
                       {item.year}
                     </div>
-                    <h3 className="font-display font-semibold text-[#4E342E] text-xl mb-1">{item.title}</h3>
-                    <p className="text-[#6D4C41]/70 text-sm leading-relaxed">{item.desc}</p>
+                    <h3 className="font-display font-semibold text-[var(--text-strong)] text-xl mb-1">{item.title}</h3>
+                    <p className="text-[var(--text-muted)] text-sm leading-relaxed">{item.desc}</p>
                   </div>
 
                   {/* Dot */}
-                  <div className="absolute left-6 md:left-1/2 top-2 w-3 h-3 -translate-x-1/2 rounded-full border-2 border-[#FF8C42] bg-white shadow-md" />
+                  <div className="absolute left-6 md:left-1/2 top-2 w-3 h-3 -translate-x-1/2 rounded-full border-2 border-[#FF8C42] bg-[var(--surface-card)] shadow-md" />
 
                   {/* Spacer */}
                   <div className="hidden md:block flex-1" />
@@ -188,12 +188,12 @@ export default function AboutPageClient() {
       </section>
 
       {/* Skills */}
-      <section className="py-24 px-6 md:px-12 bg-white">
+      <section className="py-24 px-6 md:px-12 bg-[var(--surface-card)]">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             <div>
-              <Reveal><p className="text-[#FF8C42] text-xs tracking-widest uppercase mb-3">Expertise</p></Reveal>
-              <Reveal delay={0.1}><h2 className="font-display text-4xl font-bold text-[#4E342E] mb-8">Skills & Mastery</h2></Reveal>
+              <Reveal><p className="text-[#FF8C42] text-xs tracking-widest uppercase mb-3">Craft</p></Reveal>
+              <Reveal delay={0.1}><h2 className="font-display text-4xl font-bold text-[var(--text-strong)] mb-8">What We Make</h2></Reveal>
               {skills.map((skill) => (
                 <SkillBar key={skill.name} name={skill.name} level={skill.level} />
               ))}
@@ -201,15 +201,15 @@ export default function AboutPageClient() {
 
             <div>
               <Reveal><p className="text-[#FF8C42] text-xs tracking-widest uppercase mb-3">Recognition</p></Reveal>
-              <Reveal delay={0.1}><h2 className="font-display text-4xl font-bold text-[#4E342E] mb-8">Achievements</h2></Reveal>
+              <Reveal delay={0.1}><h2 className="font-display text-4xl font-bold text-[var(--text-strong)] mb-8">What We&apos;re Proud Of</h2></Reveal>
               <div className="grid grid-cols-1 gap-4">
                 {achievements.map((item, i) => (
                   <Reveal key={item.title} delay={i * 0.1}>
-                    <div className="flex items-start gap-4 p-5 rounded-2xl border border-[#4E342E]/8 bg-[#f8f5f0] hover:border-[#FF8C42]/30 hover:shadow-md transition-all duration-300">
+                    <div className="flex items-start gap-4 p-5 rounded-2xl border border-[var(--border-subtle)] bg-[var(--surface-muted)] hover:border-[#FF8C42]/30 hover:shadow-md transition-all duration-300">
                       <span className="text-3xl">{item.icon}</span>
                       <div>
-                        <h4 className="font-display font-semibold text-[#4E342E] mb-0.5">{item.title}</h4>
-                        <p className="text-[#6D4C41]/60 text-sm">{item.desc}</p>
+                        <h4 className="font-display font-semibold text-[var(--text-strong)] mb-0.5">{item.title}</h4>
+                        <p className="text-[var(--text-muted)] text-sm">{item.desc}</p>
                       </div>
                     </div>
                   </Reveal>
